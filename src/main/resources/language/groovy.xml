@@ -1,0 +1,10 @@
+<injection language="" injector-id="JAVA">
+    <display-name>groovy-script</display-name>
+    ...
+    <place><![CDATA[
+    psiParameter()
+      .ofMethod(0, psiMethod().withName("matches")
+      .withParameters("java.lang.String")
+      .definedInClass("java.lang.String"))
+  ]]></place>
+</injection>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin require-restart="true">
+    <id>org.fiture</id>
+    <name>Audit</name>
+    <vendor email="yangdongsheng@fiture.com" url="https://www.fiture.com">fiture</vendor>
+
+    <description>1111111111111111111111111111111111111111111111111111111111111</description>
+
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <languageInjectionContributor implementationClass="com.fiture.plugin.audit.injector.MyConfigInjector" language="JSON"/>
+        <!-- Add your extensions here -->
+        <lang.psiAugmentProvider implementation="com.fiture.plugin.audit.provider.LombokAugmentProvider"/>
+        <projectService serviceImplementation="com.fiture.plugin.audit.provider.LombokProcessorProvider"/>
+        <applicationService serviceImplementation="com.fiture.plugin.audit.processor.field.GetterFieldProcessor"/>
+        <applicationService serviceImplementation="com.fiture.plugin.audit.processor.field.SetterFieldProcessor"/>
+        <applicationService serviceImplementation="com.fiture.plugin.audit.processor.clazz.SetterProcessor"/>
+        <applicationService serviceImplementation="com.fiture.plugin.audit.processor.clazz.GetterProcessor"/>
+        <applicationService serviceImplementation="com.fiture.plugin.audit.processor.clazz.AuditProcessor"/>
+        <applicationService serviceImplementation="com.fiture.plugin.audit.processor.clazz.AuditFieldProcessor"/>
+        <applicationService serviceImplementation="com.fiture.plugin.audit.processor.CleanupProcessor"/>
+    </extensions>
+    <actions>
+        <!-- Add your actions here -->
+        <action id="Test" class="com.fiture.plugin.audit.action.TestAction" text="Test">
+            <add-to-group group-id="RefactoringMenu" anchor="first"/>
+        </action>
+    </actions>
+</idea-plugin>
