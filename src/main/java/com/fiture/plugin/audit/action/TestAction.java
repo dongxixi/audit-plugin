@@ -1,6 +1,6 @@
 package com.fiture.plugin.audit.action;
 
-import com.fiture.plugin.audit.ui.Test;
+import com.fiture.plugin.audit.ui.PsiViewerDialog;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
@@ -28,6 +28,6 @@ public class TestAction extends AnAction {
         //     }
         // };
         // psiTreeElementBase.getChildren();
-        new Test(project, editor).show();
+        new PsiViewerDialog(project, editor).show();
     }
 }

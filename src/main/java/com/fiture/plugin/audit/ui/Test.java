@@ -11,6 +11,7 @@ import com.intellij.internal.psiView.formattingblocks.BlockTreeNode;
 import com.intellij.internal.psiView.formattingblocks.BlockTreeStructure;
 import com.intellij.lang.Language;
 import com.intellij.lang.LanguageFormatting;
+import com.intellij.lang.LanguageStructureViewBuilder;
 import com.intellij.lang.injection.InjectedLanguageManager;
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.actionSystem.DataProvider;
@@ -32,10 +33,7 @@ import com.intellij.openapi.ui.DialogWrapper;
 import com.intellij.openapi.util.Disposer;
 import com.intellij.openapi.util.NlsContexts;
 import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiDocumentManager;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiFileFactory;
+import com.intellij.psi.*;
 import com.intellij.psi.codeStyle.CodeStyleSettings;
 import com.intellij.ui.JBColor;
 import com.intellij.ui.tree.AsyncTreeModel;
@@ -112,6 +110,7 @@ public class Test extends DialogWrapper implements DataProvider {
         StructureTreeModel<BlockTreeStructure> structureTreeModel = new StructureTreeModel<>(blockTreeStructure, parent);
         AsyncTreeModel asyncTreeModel = new AsyncTreeModel(structureTreeModel, parent);
         myTree.setModel(asyncTreeModel);
+        LanguageStructureViewBuilder.INSTANCE.getStructureViewBuilder(PsiManager.getInstance(project).findFile(myEditor.getVirtualFile()));
     }
 
     private class EditorListener implements SelectionListener, DocumentListener, CaretListener {
